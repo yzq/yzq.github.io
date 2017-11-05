@@ -1,14 +1,27 @@
 ---
 layout: post
-title: 如何使用 Jacman 主题
+title: Flask 源码分析-路由机制
 tags:
-- Jekyll
-- Jacman
-categories: Jekyll
+- Flask
+- Python
+categories: Flask
 description: Jacman 是一款扁平化，有着响应式设计的 Jekyll 主题。本站正式使用了 Jacman 主题。Jacman 基于 Jacman 的 Hexo 主题修改而来。你可以前往本站和 Demo 预览更多关于本主题的更多效果。如果你有任何问题或意见欢迎到 GitHub 发表 issue。
 ---
-## 主题介绍
-Jekyll-Jacman 是为 [Jekyll](http://jekyllrb.com) 设计的一款清新且具有响应式的主题，拥有更丰富的特性并支持了很多的国内服务。Jacman 始于 [Jacman](https://github.com/wuchong/jacman) 移植而来。
+## 建立路由规则
+Flask 针对不同的URL请求，会有不同的处理函数，路由就是根据请求的URL找到对应处理函数的过程。  
+Flask 建立路由规则的方法一般通过 @route 装饰器对视图函数进行装饰，例如：  
+<pre><code>app = Flask(__name__)
+@app.route('/')
+def index():
+    return 'Hello world!'
+</code></pre>
+该方法也可以写成
+<pre><code>app = Flask(__name__)
+def index():
+    return 'Hello world!'
+app.add_url_rule('/', 'hello', hello)
+</code></pre>
+建立路由规则时，Flask 究竟做了什么，我们来看看 route 方法：
 
 <!-- more -->
 
