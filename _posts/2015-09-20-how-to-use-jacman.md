@@ -45,7 +45,8 @@ def add_url_rule(self, rule, endpoint=None, view_func=None, **options):
                                  'existing endpoint function: %s' % endpoint)
         self.view_functions[endpoint] = view_func
 </code></pre>  
-这段代码省略了获取 endpoint 和 methods 的部分，它主要做了两件事，一是根据 URL、methods 和 endpoint 创建 Rule 对象，将其添加到变量 url\_map 中，Rule对象是   werkzeug.routing:Rule 类的对象，url\_map 是 werkzeug.routeing:Map 类的对象，这两个类的具体作用会在后面介绍。add\_url\_rule 函数做的第二件事是将视图函数添加到字典 view\_functions中，对应的键为 endpoint，这样路由规则就创建完成。根据上面的处理过程，我们可以猜想一下，当客户端发来 URL 请求，Flask 是怎样处理的：先根据请求中的 URL，method 与 url\_map 中的 rule 进行匹配，若能匹配上，就能获取 rule 对应的 endpoint，然后查找字典 view_funciton，得到视图函数，视图函数对请求进行处理，返回结果。
+这段代码省略了获取 endpoint 和 methods 的部分，它主要做了两件事，一是根据 URL、methods 和 endpoint 创建 Rule 对象，将其添加到变量 url\_map 中，Rule对象是   werkzeug.routing:Rule 类的对象，url\_map 是 werkzeug.routeing:Map 类的对象，这两个类的具体作用会在后面介绍。add\_url\_rule 函数做的第二件事是将视图函数添加到字典 view\_functions中，对应的键为 endpoint，这样路由规则就创建完成。  
+根据上面的处理过程，我们可以猜想一下，当客户端发来 URL 请求，Flask 是怎样处理的：先根据请求中的 URL，method 与 url\_map 中的 rule 进行匹配，若能匹配上，就能获取 rule 对应的 endpoint，然后查找字典 view_funciton，得到前面添加的视图函数，视图函数对请求进行处理，返回结果。
 <!-- more -->
 
 ## 配置指南
