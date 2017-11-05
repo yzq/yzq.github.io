@@ -17,14 +17,14 @@ def index():
     return 'Hello world!'
 ```
 该方法也可以写成
-```
+```python
 app = Flask(__name__)
 def index():
 	return 'Hello world!'
 app.add_url_rule('/', 'hello', hello)
 ```
 建立路由规则时，Flask 究竟做了什么，我们来看看 route 函数：
-```
+```python
 def route(self, rule, **options):
     def decorator(f):
         endpoint = options.pop('endpoint', None)
@@ -33,7 +33,7 @@ def route(self, rule, **options):
     return decorator
 ```
 route 函数是一个装饰器，获取参数 options 中的 endpoint 后，调用 add\_url\_rule 添加路由规则，返回被装饰的函数，这也验证了上面两种方法等价的说法。add\_url\_rule 是怎样添加路由规则的？
-```
+```python
 def add_url_rule(self, rule, endpoint=None, view_func=None, **options):
     ...
     rule = self.url_rule_class(rule, methods=methods, **options)
