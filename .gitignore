@@ -1,14 +1,27 @@
-*.gem
-*.sublime-project
-*.sublime-workspace
-.bundle
-.DS_Store
-.jekyll-metadata
+# Jekyll and Ruby specific.
 .sass-cache
-_asset_bundler_cache
-_site
-codekit-config.json
-example/_site
+_site/*
 Gemfile.lock
-node_modules
-npm-debug.log*
+Gemfile
+
+# Bundler related.
+.bundle
+vendor/bundle/
+
+# Other.
+*.orig
+*.core
+*.rej
+*~
+*.swp
+*.log
+*.tmp
+*.bak
+.*\#.*\#$
+
+# OS garbage.
+Thumbs.db
+.DS_Store
+
+# IntelliJ IDEA
+.idea/*

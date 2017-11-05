@@ -2,19 +2,37 @@
 layout: default
 ---
 
-{% include page-intro.html %}
+<div id="post" class="container">
 
-<main id="main" class="page-content" aria-label="Content">
-  <div class="inner">
-    <article class="entry-wrap">
-      <div class="entry-content">
-        {{ content }}
-      </div>
-      {% if site.disqus.shortname %}
-        {% include disqus_comments.html %}
-      {% endif %}
-    </article>
+	<div class="postthumb"><img src="/thumbnails/{{ page.thumbnail }}" /></div>
 
-    {% include footer.html %}
-  </div>
-</main>
+	<h1>{{ page.title }}</h1>
+
+	<div class="meta clearfix">
+		<strong>Author:</strong> {{ page.author }}
+
+		{% if page.license %}
+			<br /><strong>License:</strong> {{ page.license }}
+		{% endif %}
+
+		<br /><br />
+		{% if page.homepage %}
+			<a class="btn" href="{{ page.homepage }}"><i class="icon-home"></i> Homepage</a>
+		{% endif %}
+		{% if page.download %}
+			<a class="btn" href="{{ page.download }}"><i class="icon-download-alt"></i> Download</a>
+		{% endif %}
+		{% if page.demo %}
+			<a class="btn" href="{{ page.demo }}"><i class="icon-road"></i> Demo</a>
+		{% endif %}
+		{% if page.license_link %}
+			<a class="btn" href="{{ page.license_link }}"><i class="icon-file"></i> License</a>
+		{% endif %}
+	</div>
+
+
+	<div class="post-content">
+	{{ content }}
+	</div>
+
+</div>
