@@ -10,7 +10,7 @@ description: Jacman 是一款扁平化，有着响应式设计的 Jekyll 主题�
 ## 建立路由规则
 Flask 针对不同的URL请求，会有不同的处理函数，路由就是根据请求的URL找到对应处理函数的过程。  
 Flask 建立路由规则的方法一般通过 @route 装饰器对视图函数进行装饰，例如：  
-```
+```python
 app = Flask(__name__)
 @app.route('/')
 def index():
