@@ -1,79 +1,84 @@
-# Wall-E
+# Jekyll-Jacman
 
-Wall-E is a modern Jekyll template with a magazine-like grid layout on the frontpage, beautiful typography and uncomplicated content. 
+**中文 | [English](/README_en.md)**
 
-<img src="https://github.com/abhn/Wall-E/blob/master/tmp/desktop.png?raw=true">
+Jekyll-Jacman 是为 [Jekyll](http://jekyllrb.com) 设计的一款清新且具有响应式的主题，拥有更丰富的特性并支持了很多的国内服务。Jacman 始于 [Hexo Jacman](https://github.com/wuchong/jacman) 移植而来。
 
-## Demo
-[wall-e-jekyll.github.io/](https://wall-e-jekyll.github.io/)
+ * [主题演示](http://simpleyyt.github.io/jekyll-jacman/)
+ * [如何使用 Jacman 主题](http://simpleyyt.github.io/jekyll-jacman/jekyll/2015/09/20/how-to-use-jacman)
 
-## Contents
+## 本地搭建
 
-- [Features](#features)
-- [Usage](#usage)
-- [Customization](#customization)
-- [Screenshots](#screenshots-desktop)
-    - [Desktop](#screenshots-desktop)
-    - [Mobile](#screenshots-mobile)
-- [Credits](#credits)
-- [License](#license)
+确保已安装`Ruby 2.1.0` 或更高版本：
 
-## Features
+```sh
+ruby --version
+```
 
-- Mobile responsive, built with Semantic UI, customization is easy
-- Disqus is integrated by default
-- One column layout suitable for personal blogs with focus on content
-- Beautiful typography (uses League Gothic and Open Sans)
-- Feature image can be added to homescreen post cards
-- Search box links to Google search by default
+安装`Bundler`：
 
-## Usage
+```sh
+gem install bundler
+```
 
-Wall-E is fully furnished right out of the box. To use this template on your blog
-- If this is your first Jekyll blog, follow this <a href="https://jekyllrb.com/docs/installation/">helpful guide</a> to set up Jekyll.
-- Fork this repository, rename the fork as `your-username.github.io`. Your blog should immediately be live on `https://your-username.github.io`
-- Clone your fork
-- Delete everything in `_posts` directory. Delete the `tmp` directory.
-- Open `_config.yml` and set the variables
-- Open `_includes/disqus.html` and `_includes/disqus-count.html` and replace the value of `disqus_shortname` variable to your Disqus username
-- Run `jekyll serve` and your blog should be live on `http://localhost:4000`. Make changes, test them locally, commit your changes and push to your fork. Your changes should be live in a couple of seconds
+下载 Jacman 主题：
 
-## Customization
-- `_includes/author.html`: Add your name, link to a profile picture and a short author description that appears on the bottom of each post. See <a href="https://semantic-ui.com/views/item.html">Semantic Link</a> docs.
-- `_includes/card.html`: Cards can be customized to show the essential info about a post (feature image, catagory, tags, comment count etc). See <a href="https://semantic-ui.com/views/card.html">Semantic Card</a> docs.
-- `_includes/header.html`: Replace the site logo here. Add/replace frequently visited pages and/or social links here.
-- `_includes/footer.html`: Add your copyrights, if any, here. Also link to the less frequently visited pages and/or social links here.
-- `assets/css/main.css` and `assets/css/mobile.css`: Global and mobile specific CSS files respectively
-- `assets/js/main.js`: Any common javascript goes here. If you wish to customize the search behaviour (for example, use a different search engine), that can be done here.
+```sh
+git clone https://github.com/Simpleyyt/jekyll-jacman.git
+cd jekyll-jacman
+```
 
-## Screenshots (Desktop)
+安装依赖：
 
-### Homepage
-<img src="https://github.com/abhn/Wall-E/blob/master/tmp/desktop.png?raw=true">
+```sh
+bundle install
+```
 
-### Sample post
-<img src="https://github.com/abhn/Wall-E/blob/master/tmp/desktop-post.png?raw=true">
+运行 Jekyll：
 
-## Screenshots (Mobile)
+```sh
+bundle exec jekyll server
+```
 
-### Homepage (Portrait)
-<img width="50%" src="https://github.com/abhn/Wall-E/blob/master/tmp/mobile.png?raw=true">
+更多细节可以参考：[Setting up your GitHub Pages site locally with Jekyll](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/)
 
-### Homepage (Landscape)
-<img src="https://github.com/abhn/Wall-E/blob/master/tmp/mobile-landscape.png?raw=true">
+## 功能
 
-### Sample post (Portrait)
-<img width="50%" src="https://github.com/abhn/Wall-E/blob/master/tmp/mobile-post.png?raw=true">
+- **菜单 menu**  
+ 主导航菜单
+- **控件 widget**  
+ 侧边栏的控件。包括：Github 名片	、分类、标签、RSS、友情链接、微博秀。
+- **图片相关 Image**  
+ 设置网站图标、网站logo、作者头像、博客顶部大图等。还提供了多种图片样式`img-logo`,`img-topic`,`img-center`等。
+- **首页模式 index**  
+ 主题提供了两种首页展示模式。
+- **作者 author**  
+ 作者信息，主要用于展示网站右下角的社交网络链接。包括：微博、豆瓣、知乎、邮箱、GitHub、StackOverflow、Twitter、Facebook、Linkedin、Google+。
+- **目录 toc**  
+ 在文章中和侧边栏可以显示目录。
+- **评论 comments**  
+ 支持 [多说](http://duoshuo.com/) & [disqus](https://disqus.com/) 评论。
+- **分享 jiathis**  
+ 启用 内建分享工具 或 [加网](http://www.jiathis.com/) 分享系统。
+- **网站统计 Analytiscs**  
+ 支持 [谷歌统计](http://www.google.com/analytics/) & [百度统计](http://tongji.baidu.com/) & [CNZZ站长统计](http://www.cnzz.com/)。
+- **Search**  
+ 支持 [谷歌自定义搜索](https://www.google.com/cse/ ) & [百度站内搜索](http://zn.baidu.com/)  &[微搜索](http://tinysou.com/)。 &[Simple Jekyll Search](https://github.com/christian-fei/Simple-Jekyll-Search)
+- **totop**  
+ 回到顶部。
+- **rss**  
+ RSS 订阅链接。
+- **fancybox**  
+ 图片查看的 [Fancybox](http://fancyapps.com/fancybox/) 工具。
+- **其他**
+ 你可以设置侧边栏在博文页面中不显示。
 
-### Footer (Landscape)
-<img src="https://github.com/abhn/Wall-E/blob/master/tmp/mobile-landscape-footer.png?raw=true">
+## 协议
 
+[MIT](/LICENSE)
 
-## Credits
-- <a href="https://demo.ghost.io">Ghost</a> blogging platform's demo page for inspiration (and the header background image).
-- <a href="http://www.jeanchristophebonis.com/">For the Wall-E image used everywhere</a>
-- <a href="https://semantic-ui.com">Semantic UI</a>
+## 捐赠
 
-## License
+支付宝捐赠链接还是要有的，万一真的有人捐呢。
 
-Open sourced under the [MIT license](LICENSE.md) <3
+![支付宝扫码捐赠](http://p1.bpimg.com/567571/9a4a158daee8aa69.png)
