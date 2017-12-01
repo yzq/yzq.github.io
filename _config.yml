@@ -29,7 +29,7 @@ paginate: 20
 
 #### Site
 title : Hello World
-tagline: A place to play
+tagline: A place to write
 assets: /assets
 url:
 baseurl:
