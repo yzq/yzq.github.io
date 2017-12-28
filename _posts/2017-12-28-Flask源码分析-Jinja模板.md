@@ -67,13 +67,13 @@ def render_template(template_name_or_list, **context):
 ```
 `ctx.app.jinja_env.get_or_select_template(template_name_or_list)` 返回一个被加载的模板，该过程的具体的实现经过了多层函数的调用。应用上下文 `ctx.app` 调用 `jinja_env`，该函数返回了一个 `Environment` 对象，然后调用 `get_or_select_template` 返回加载的模板。
 ```python
-    def get_or_select_template(self, template_name_or_list,
-                               parent=None, globals=None):
-        if isinstance(template_name_or_list, string_types):
-            return self.get_template(template_name_or_list, parent, globals)
-        elif isinstance(template_name_or_list, Template):
-            return template_name_or_list
-        return self.select_template(template_name_or_list, parent, globals)
+def get_or_select_template(self, template_name_or_list,
+                           parent=None, globals=None):
+    if isinstance(template_name_or_list, string_types):
+        return self.get_template(template_name_or_list, parent, globals)
+    elif isinstance(template_name_or_list, Template):
+        return template_name_or_list
+    return self.select_template(template_name_or_list, parent, globals)
 ```
 在 `_render` 函数中，调用 `render` 方法，完成对模板的渲染。和 Jinja2 库中模板的加载和渲染过程对比发现，Flask 只是对Jinja2 库中的相关函数进行了封装，其本质还是相同的。
 ```python
