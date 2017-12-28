@@ -53,10 +53,10 @@ env = Environment(
 template = env.get_template('index.html')
 print template.render(user='abc')
 ```  
-首先创建一个模板环境对象，该对象含有一个用于查找模板的加载器，本例中，该加载器配置为在`templates` 目录下查找模板。为了加载模板，得调用 `get_template` 函数，传入模板文件名，这个就返回一个被加载的模板，若需要渲染模板中的变量，调用 `render` 函数即可。通过以上几步，就完成了模板的加载和渲染。
+首先创建一个模板环境对象，该对象含有一个用于查找模板的加载器，本例中，该加载器配置为在`templates` 目录下查找模板。为了加载模板，得调用 `get_template` 函数，传入模板文件名，这个就返回一个被加载的模板，若需要渲染模板中的变量，调用 `render` 函数即可。通过以上几步，就完成了模板的加载和渲染。  
 `Environment`对象中的加载器主要负责从资源中加载对应的模板，被加载的模板会被保存在内存中。所有的加载器都继承自 `BaseLoader`，并覆写了 `get_source` 函数。`get_source` 函数用于获取模板文件的unicode字符串或ASCII字节串，模板文件名称，然后返回一个元组`(source, filename, uptodate) `。`BaseLoader` 的 `load` 函数通过调用 `get_source` 可加载模板。
-接着分析 Flask 中 Jinja2 的用法。
-### Flask 中 Jinja2 的使用  
+接着分析下 Jinja2 在 Flask 中是怎样被使用的。
+### Jinja2 在 Flask 中的使用  
 在视图函数中，我们加载、渲染模板时调用了 `render_template` 函数，该函数定义如下：
 ```python
 def render_template(template_name_or_list, **context):
@@ -65,7 +65,23 @@ def render_template(template_name_or_list, **context):
     return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
                    context, ctx.app)
 ```
-`ctx.app.jinja_env.get_or_select_template(template_name_or_list)` 返回一个被加载的模板，该过程的具体的实现经过了多层函数的调用。应用上下文 `ctx.app` 调用 `jinja_env`，该函数返回了一个 `Environment` 对象，然后调用 `get_or_select_template` 返回加载的模板。
+`ctx.app.jinja_env.get_or_select_template(template_name_or_list)` 返回一个被加载的模板，该过程的具体的实现经过了多层函数的调用。应用上下文 `ctx.app` 调用 `jinja_env`，该函数返回了一个 `Environment` 对象。
+```python
+class Environment(BaseEnvironment):
+    def __init__(self, app, **options):
+        if 'loader' not in options:
+            options['loader'] = app.create_global_jinja_loader()
+        BaseEnvironment.__init__(self, **options)
+        self.app = app
+```
+在未被指定加载器的情况下 `Environment` 对象创建一个默认加载器，查看多层函数调用，发现该加载器本质是一个文件系统加载器，我们可通过`app = Flask(__name__, template_folder=tmpl_dir)`来改变模板的加载路径。
+```python
+def jinja_loader(self):
+    if self.template_folder is not None:
+        return FileSystemLoader(os.path.join(self.root_path,
+                               self.template_folder))
+```
+接下来，`Environment` 对象调用 `get_or_select_template` 返回加载的模板。
 ```python
 def get_or_select_template(self, template_name_or_list,
                            parent=None, globals=None):
